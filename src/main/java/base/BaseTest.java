@@ -12,6 +12,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import utils.EmailUtils;
 import utils.ExtentReprts;
 import utils.Log;
+import org.testng.annotations;
 public class BaseTest {
 
 	protected WebDriver driver;
