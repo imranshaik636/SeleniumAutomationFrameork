@@ -2,30 +2,46 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
 	private WebDriver driver;
 
-	private By usernameTexBox = By.id("Email");
-	private By passwordTextBox = By.id("Password");
-	private By loginButton = By.xpath("//*[@id=\"main\"]/div/div/div/div[2]/div[1]/div/form/div[3]/button");
+	@FindBy(id = "Email")
+	WebElement usernameTexBox;
 
-	public LoginPage(WebDriver driver) { 	
+	@FindBy(id = "Password")
+	WebElement passwordTextBox;
+
+	@FindBy(xpath = "//*[@id=\"main\"]/div/div/div/div[2]/div[1]/div/form/div[3]/button")
+	WebElement loginButton;
+
+	/*
+	 * private By usernameTexBox = By.id("Email"); private By passwordTextBox =
+	 * By.id("Password"); private By loginButton =
+	 * By.xpath("//*[@id=\"main\"]/div/div/div/div[2]/div[1]/div/form/div[3]/button"
+	 * );
+	 */
+
+	public LoginPage(WebDriver driver) {
 		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 
 	public void enterusername(String username) {
-		driver.findElement(usernameTexBox).clear();
-		driver.findElement(usernameTexBox).sendKeys(username);
+		usernameTexBox.clear();
+		usernameTexBox.sendKeys(username);
 	}
 
 	public void enterpassword(String password) {
-		driver.findElement(passwordTextBox).clear();
-		driver.findElement(passwordTextBox).sendKeys(password);
+		passwordTextBox.clear();
+		passwordTextBox.sendKeys(password);
 	}
 
 	public void clicklogin() {
-		driver.findElement(loginButton).click();
+		loginButton.click();
 	}
 }
